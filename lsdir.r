@@ -1,24 +1,13 @@
 # Copyright © 2012 James Toll
-# normalizePath("..")
-# path.expand("~")
 
-lsdir <- function(path, names = "relative", all = FALSE, recursive = FALSE) {
-  # a function to list directories that actually works
+lsdir <- function(path, format = "relative", recursive = FALSE, all = FALSE) {
+  # list directories
+  # format is any part of "fullpath", "relative", or "basename"
   
   # set a path if necessary
   if (missing(path)) {
     path <- "."
   }
-
-#   # isolate the first character of the path for testing
-#   pathID <- strsplit(path, "")[[1]][1]
-#   
-#   # test whether the path is absolute or relative
-#   if (pathID == "/" || pathID == "~"){
-#     absolute <- TRUE
-#   } else {
-#     absolute <- FALSE
-#   }
   
   # recursion
   if (recursive == FALSE) {
@@ -28,30 +17,33 @@ lsdir <- function(path, names = "relative", all = FALSE, recursive = FALSE) {
   }
   
   # piece together system command
-  execFind <- paste("find", path, "-type d", argRecursive, "-mindepth 1 -print", sep = " ")
+  execFind <- paste("find", path, "-type d", argRecursive,
+                    "-mindepth 1 -print", sep = " ")
   
   # execute system command 
   tmp <- system(execFind, intern = TRUE)
   
-  # remove hidden files if all == FALSE
+  # remove .hidden files if all == FALSE
   if (all == FALSE) {
     tmp <- tmp[grep("^\\..*", basename(tmp), invert = TRUE)]
   }
   
-  # match names argument
-  names <- match.arg(tolower(names), c("fullpath", "relative", "basename"))
+  # match format argument
+  format <- match.arg(tolower(format), c("relative", "fullpath", "basename"))
   
-  # format output based upon names argument
-  if (names == "basename") {
+  # format output based upon format argument
+  if (format == "basename") {
     out <- basename(tmp)
-  } else if (names == "fullpath") {     #  && absolute == FALSE
-#    out <- paste(getwd(), gsub("\\./", "", tmp), sep = "/")
+  } else if (format == "fullpath") {
     out <- normalizePath(tmp)
   } else {
     out <- tmp
   }
+
+  # clean up any duplicate "/"
+  out <- gsub("/+", "/", out)
   
-  # clean up redundant "/" and return
-  return(gsub("/+", "/", out))
+  # return
+  return(out)
   
 }
