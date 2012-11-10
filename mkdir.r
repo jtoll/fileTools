@@ -1,5 +1,10 @@
 # Copyright © 2012 James Toll
 
+# source noclobber.r
+if (!exists("noclobber")) {
+  source("~/src/r/fileTools/noclobber.r")
+}
+
 mkdir <- function(path, find = TRUE, ...) {
   # make a directory, defaulting to today's date
   
@@ -7,22 +12,14 @@ mkdir <- function(path, find = TRUE, ...) {
   if (missing(path)) {
     path <- as.character(Sys.Date())
   }
-  
-  if (file.exists(path)) {
-    if (find == TRUE) {
-      ext <- try(which(file.exists(paste(path, "-", 1:100, sep = "")) == FALSE)[1])
-      mkdir(paste(path, "-", ext, sep = ""), find = TRUE, ...)
-    } else {
-      stop(paste("mkdir: ", path, ": File exists", sep = ""))
-    }
-  } else {
-    # create the directory
-    dir.create(path, ...)
 
-    # return path invisibly
-    invisible(path)
-  }
+  # avoid collisions
+  x <- noclobber(path)
+  
+  # create the directory
+  dir.create(x, ...)
+
+  # return path invisibly
+  invisible(x)
 
 }
-
-
