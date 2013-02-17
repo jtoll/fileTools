@@ -1,11 +1,11 @@
 # Copyright © 2012 James Toll
 
-noclobber <- function(filename, behavior = c("ask", "increment", "stop")) {
+noclobber <- function(filename, behavior = c("ask", "increment", "timestamp", "stop")) {
   # Try to prevent accidental overwriting of files 
   
   if (file.exists(filename)) {
   
-    behavior <- match.arg(tolower(behavior), c("ask", "increment", "stop"))
+    behavior <- match.arg(tolower(behavior), c("ask", "increment", "timestamp", "stop"))
     
     if ((behavior == "ask")) {
       
@@ -13,8 +13,8 @@ noclobber <- function(filename, behavior = c("ask", "increment", "stop")) {
 #       cat("Overwrite? [yes/no/increment]")
 #       answer <- match.arg(tolower(scan(n = 1, what = "character", quiet = TRUE)),
 #                           c("yes", "no", "increment"))
-      answer <- match.arg(tolower(readline("Overwrite: [yes/no/increment]? ")),
-                          c("yes", "no", "increment"))
+      answer <- match.arg(tolower(readline("Overwrite: [yes/no/increment/timestamp]? ")),
+                          c("yes", "no", "increment", "timestamp"))
       
       
       if (answer == "yes") {
@@ -23,6 +23,8 @@ noclobber <- function(filename, behavior = c("ask", "increment", "stop")) {
         stop("Nothing done!", call. = FALSE)
       } else if (answer == "increment") {
         noclobber(filename, behavior = "increment")
+      } else if (answer == "timestamp") {
+        noclobber(filename, behavior = "timestamp")
       }
 
     } else if ((behavior == "increment")) {
@@ -38,6 +40,8 @@ noclobber <- function(filename, behavior = c("ask", "increment", "stop")) {
       
       noclobber(paste(part1, "-", ext, part2, sep = ""), behavior = "increment")
       
+    } else if ((behavior == "timestamp")) {
+      return(paste(format(Sys.time(), "%Y-%m-%dT%H-%M-%S"), filename, sep = "-"))
     } else if (behavior == "stop") {
       stop("File already exists!")
     } 
@@ -46,4 +50,5 @@ noclobber <- function(filename, behavior = c("ask", "increment", "stop")) {
     return(filename)
   }
 }
+
 
