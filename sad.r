@@ -37,3 +37,5 @@ sad <- function (pattern, envir = .GlobalEnv, all.names = FALSE, functions = FAL
   }
 
 }
+
+

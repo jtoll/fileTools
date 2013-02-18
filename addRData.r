@@ -23,3 +23,5 @@ addRData <- function(robj, filename, ...) {
  
   rm(tmpEnv)
 }
+
+
