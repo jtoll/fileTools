@@ -1,8 +1,13 @@
 Package: fileTools
-Title: What the Package Does (one line, title case)
+Title: Miscellaneous file tools for R
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph)
-Depends: R (>= 3.2.0)
-License: What license is it under?
+Date: 2015-06-18
+Authors@R: person("James", "Toll", email = "james@jtoll.com", role = c("aut", "cre"))
+Description: Various functions created to facilitate the manipulation of files in R.
+License: BSD_3_clause + file LICENSE
+URL: http://github.com/jtoll/fileTools
 LazyData: true
+Depends: R (>= 3.2.0)
+Imports:
+    RCurl,
+    RJSONIO
