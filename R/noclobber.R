@@ -1,5 +1,3 @@
-# Copyright © 2012, 2013 James Toll
-
 noclobber <- function(filename, behavior = c("ask", "auto","stop"), form = c("timestamp", "increment")) {
   # Try to prevent accidental overwriting of files
 
