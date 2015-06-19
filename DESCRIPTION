@@ -11,3 +11,5 @@ Depends: R (>= 3.2.0)
 Imports:
     RCurl,
     RJSONIO
+SystemRequirements:
+    Git
