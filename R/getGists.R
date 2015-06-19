@@ -1,8 +1,5 @@
 # https://gist.github.com/1622504
 
-library(RJSONIO)
-library(RCurl)
-
 getGists <- function(login) {
   # pull or clone ALL the public gists for a particular github login
 
@@ -14,7 +11,7 @@ getGists <- function(login) {
 
   stopifnot(url.exists(URL))
 
-  document <- fromJSON(getURL(URL))
+  document <- RJSONIO::fromJSON(RCurl::getURL(URL))
   stopifnot(length(document) > 0)
 
   all_id <- sapply(document, function(x) x$id)
