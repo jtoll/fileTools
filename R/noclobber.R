@@ -56,4 +56,3 @@ noclobber <- function(filename, behavior = c("ask", "auto","stop"), form = c("ti
   # Mac OS X has issues with : (colons) in the time, therefore use - instead
   return(paste(format(Sys.time(), "%Y-%m-%dT%H-%M-%S"), filename, sep = "-"))
 }
-

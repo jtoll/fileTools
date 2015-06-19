@@ -31,5 +31,3 @@ webloc <- function(path = ".", recursive = FALSE) {
   # return
   return(robj)
 }
-
-

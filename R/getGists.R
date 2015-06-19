@@ -34,5 +34,3 @@ getGists <- function(login) {
   return(sapply(all_id, do))
 
 }
-
-

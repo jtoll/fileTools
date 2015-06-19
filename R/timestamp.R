@@ -38,5 +38,3 @@ timestampr <- function (path = ".") {
   return(targets[!result])
 
 }
-
-

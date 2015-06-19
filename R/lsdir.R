@@ -45,5 +45,3 @@ lsdir <- function(path, format = "relative", recursive = FALSE, all = FALSE) {
   return(out)
 
 }
-
-
