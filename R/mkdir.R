@@ -1,8 +1,3 @@
-# source noclobber.r
-if (!exists("noclobber")) {
-  source("~/src/r/fileTools/noclobber.r")
-}
-
 mkdir <- function(path, find = TRUE, ...) {
   # make a directory, defaulting to today's date
 
@@ -21,5 +16,3 @@ mkdir <- function(path, find = TRUE, ...) {
   invisible(x)
 
 }
-
-
