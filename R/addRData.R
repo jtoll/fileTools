@@ -29,7 +29,7 @@ addRData <- function(robj, filename, ...) {
 
     allObjNames <- c(oldObjNames, newObjName)
 
-    save(list = allObjNames), file = filename, envir = tmpEnv, ...)
+    save(list = allObjNames, file = filename, envir = tmpEnv, ...)
 
     cat("Saved: ")
     cat(allObjNames)
