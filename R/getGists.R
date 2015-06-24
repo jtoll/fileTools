@@ -13,7 +13,7 @@
 #' getGists("jtoll")
 #'
 #' @export
-#' @importFrom RCurl getURL
+#' @importFrom RCurl getURL url.exists
 #' @importFrom RJSONIO fromJSON
 #'
 getGists <- function(username) {

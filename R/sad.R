@@ -1,10 +1,12 @@
-#' SAD (i.e Seek And Destroy)
+#' sad (i.e Seek And Destroy)
 #'
 #' Find objects matching the pattern in the specified environment and remove.
 #'
 #' @param pattern a character vector containing a regular expression to be matched.
 #' @param envir the global environment is the default.
-#' @param all.names whether to include hidden (.) files in the search.
+#' @param all.names logical. whether to include hidden (.) files in the search.
+#' @param functions logical. whether to include functions in the search.
+#' @param ... additional arguments passed to \code{ls}.
 #'
 #' @return A vector of object names matching the pattern.
 #'

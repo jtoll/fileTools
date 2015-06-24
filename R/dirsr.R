@@ -2,7 +2,7 @@
 #'
 #' Recursively return a vector of \strong{just} the directories in path.
 #'
-#' @param path a character vector containing a single path name.
+#' @param paths a character vector containing a single path name.
 #'
 #' @return a vector of directories
 #'
